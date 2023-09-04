@@ -1,4 +1,4 @@
-#![allow(dead_code, unreachable_code, unused_variables)]
+#![allow(dead_code, unreachable_code, unused_variables, unused_assignments)]
 
 // 00 - FUNDAMENTALS
 //
@@ -18,20 +18,15 @@
 mod variables {
     #[test]
     fn immutable_variable() {
-        todo!("Create a variable called `answer` that is immutable and set it equal to 42 with type i32");
-
-        assert_eq!(todo!("answer") as u32, 42);
+        let answer: i32 = 42;
+        assert_eq!(answer, 42);
     }
 
     #[test]
     fn mutable_variable() {
-        todo!(
-            "Create a variable called `answer` that is mutable and set it equal to 0 with type i32"
-        );
-
-        todo!("Assign 42 to `answer`");
-
-        assert_eq!(todo!("answer") as u32, 42);
+        let mut answer: i32 = 0;
+        answer = 42;
+        assert_eq!(answer, 42);
     }
 }
 
@@ -42,93 +37,81 @@ mod variables {
 /// Rust supports a wide variety of literals, including integers, floats, booleans,
 /// characters, strings, byte strings, arrays, tuples, and unit.
 mod literals {
+
     #[test]
     fn signed_integer_literal_32() {
-        let answer: i32 = todo!("The answer to the meaning of life, the universe, and everything");
-
+        let answer: i32 = 42;
         assert_eq!(answer, 42);
     }
 
     #[test]
     fn unsigned_integer_literal_32() {
-        let answer: u32 = todo!("The answer to the meaning of life, the universe, and everything");
-
+        let answer: u32 = 42;
         assert_eq!(answer, 42u32);
     }
 
     #[test]
     fn signed_integer_literal_64() {
-        let answer: i64 = todo!("A bigger number than can fit into an i32");
-
+        let answer: i64 = 2_147_483_648;
         assert_eq!(answer, 2_147_483_648i64);
     }
 
     #[test]
     fn unsigned_integer_literal_64() {
-        let answer: u64 = todo!("A bigger number than can fit into an i32");
-
+        let answer: u64 = 2_147_483_648;
         assert_eq!(answer, 2_147_483_648u64);
     }
 
     #[test]
     fn float_literal() {
-        let answer: f64 = todo!("A number with a fractional component");
-
+        let answer: f64 = 3.14159265358979323846264338327950288f64;
         assert_eq!(answer, 3.14159265358979323846264338327950288f64);
     }
 
     #[test]
     fn boolean_literal() {
-        let answer: bool = todo!("Is coffee better than tea?");
-
+        let answer: bool = 3 > 2;
         assert_eq!(answer, true);
     }
 
     #[test]
     fn character_literal() {
-        let answer: char = todo!("A single character");
-
+        let answer: char = '🦀';
         assert_eq!(answer, '🦀');
     }
 
     #[test]
     fn string_literal() {
-        let answer: &str = todo!("A string slice");
-
+        let answer: &str = "Hello, world!";
         assert_eq!(answer, "Hello, world!");
     }
 
     #[test]
     fn byte_string_literal() {
-        let answer: &[u8] = todo!("A byte string slice");
-
+        let answer: &[u8] = "Hello, world!".as_bytes();
         assert_eq!(answer, b"Hello, world!");
     }
 
     fn byte_literal() {
-        let answer: u8 = todo!("A single byte");
-
+        let answer: u8 = b'H';
         assert_eq!(answer, b'H');
     }
 
     #[test]
     fn array_literal() {
-        let answer: [i32; 3] = todo!("An array of integers");
-
+        let answer: [i32; 3] = [1, 2, 3];
         assert_eq!(answer, [1, 2, 3]);
     }
 
     #[test]
     fn tuple_literal() {
-        let answer: (i32, f64, &str) = todo!("A tuple of integers, floats, and strings");
-
+        let answer: (i32, f64, &str) = (1, 2.0, "three");
         assert_eq!(answer, (1, 2.0, "three"));
     }
 
     #[test]
     fn unit_literal() {
-        let answer: () = todo!("A unit value");
-
+        let answer: () = ();
         assert_eq!(answer, ());
     }
 }
@@ -144,29 +127,25 @@ mod expressions {
 
     #[test]
     fn numeric_operator_expression() {
-        let answer: i32 = todo!("2 + 2");
-
-        assert_eq!(answer, 4);
+        let answer: i32 = 2 + 2;
+        assert_eq!(answer, 4_i32);
     }
 
     #[test]
     fn boolean_operator_expression() {
-        let answer: bool = todo!("It's not true!");
-
+        let answer: bool = 3 == 4;
         assert_eq!(answer, false);
     }
 
     #[test]
     fn boolean_bit_operator_expression() {
-        let answer: bool = todo!("It's not true!");
-
+        let answer: bool = 4 & 1 == 1;
         assert_eq!(answer, false);
     }
 
     #[test]
     fn if_else_expression() {
-        let answer: i32 = todo!("If true, 1, otherwise 0");
-
+        let answer: i32 = if 1 == 1 { 1 } else { 0 };
         assert_eq!(answer, 1);
     }
 
@@ -174,7 +153,10 @@ mod expressions {
     fn match_expression() {
         let result: Result<i32, String> = Result::Ok(42);
 
-        let answer: i32 = todo!("Match on result");
+        let answer: i32 = match result {
+            Ok(value) => value,
+            Err(_) => 0,
+        };
 
         assert_eq!(answer, 42);
     }
@@ -191,8 +173,7 @@ mod expressions {
             age: 42,
         };
 
-        let answer: &str = todo!("Get the name of the person");
-
+        let answer: &str = person.name;
         assert_eq!(answer, "Alice");
     }
 
@@ -200,7 +181,7 @@ mod expressions {
     fn tuple_expression() {
         let tuple = (1, 2.0, "three");
 
-        let answer: &str = todo!("Project out 3rd element of tuple");
+        let answer: &str = tuple.2;
 
         assert_eq!(answer, "three");
     }
@@ -209,7 +190,7 @@ mod expressions {
     fn block_expression() {
         let answer: i32 = {
             println!(".");
-            todo!("Magic number")
+            42
         };
 
         assert_eq!(answer, 42);
@@ -221,48 +202,41 @@ mod expressions {
             x + 1
         }
 
-        let answer: i32 = todo!("Add one to 41");
+        let answer: i32 = add_one(41);
 
         assert_eq!(answer, 42);
     }
 
     #[test]
     fn method_call_expression() {
-        let answer: String = todo!("Convert 42 to a string");
-
+        let answer: String = 42.to_string();
         assert_eq!(answer, "42");
     }
 
     #[test]
     fn array_indexing_expression() {
         let array: [i32; 3] = [1, 2, 3];
-        let answer: i32 = todo!("Get the first element of the array");
-
+        let answer: i32 = array[0];
         assert_eq!(answer, 1);
     }
 
     #[test]
     fn closure_expression() {
-        let answer = |x: i32| x + (todo!("Add one to x") as i32);
-
+        let answer = |x: i32| x + 1;
         assert_eq!(answer(41), 42);
     }
 
     #[test]
     fn range_inclusive_expression() {
-        let mut range: RangeInclusive<i32> = todo!("Create a range from 1 to 3");
-
+        let mut range: RangeInclusive<i32> = 1..=3;
         let found = range.find(|&x| x == 3);
-
         assert_eq!(found, Some(3));
     }
 
     #[test]
     fn range_exclusive_expression() {
-        let mut range: Range<i32> = todo!("Create a range from 1 to 3 (exclusive)");
-
+        let mut range: Range<i32> = 1..3;
         let found = range.find(|&x| x == 3);
-
         assert_eq!(found, None);
     }
 
@@ -270,8 +244,7 @@ mod expressions {
     fn loop_with_break_expression() {
         let answer: i32 = loop {
             println!("Looping...");
-
-            break todo!("Break with 42");
+            break 42;
         };
 
         assert_eq!(answer, 42);
@@ -284,9 +257,9 @@ mod expressions {
 
         let range = 1..=3;
 
-        let answer: () = for x in range {
-            todo!("Add x to sum");
-        };
+        for x in range {
+            sum = sum + x;
+        }
 
         assert_eq!(sum, 6);
     }
@@ -301,7 +274,7 @@ mod statements {
     #[test]
     fn item_statement() {
         fn answer() -> i32 {
-            todo!("Declare a function named answer that returns 42")
+            42
         }
 
         assert_eq!(answer(), 42);
@@ -309,15 +282,14 @@ mod statements {
 
     #[test]
     fn print_statement() {
-        todo!("Print Hello World! to the console");
-
+        println!("Hello, world!");
         assert_eq!((), ());
     }
 
     #[test]
     fn let_statements() {
-        let two: i32 = todo!("As the label says");
-        let four: i32 = todo!("As the label says");
+        let two: i32 = 2;
+        let four: i32 = 4;
 
         assert_eq!(two + two, four);
     }
@@ -329,7 +301,7 @@ mod statements {
 
         println!("The wrong answer is {}", answer);
 
-        todo!("Assign 42 to answer");
+        answer = 42;
 
         assert_eq!(answer, 42);
     }
@@ -341,7 +313,7 @@ mod statements {
 
         println!("The wrong answer is {}", answer);
 
-        if todo!("If true, assign 42 to answer") {
+        if 3 == 3 {
             answer = 42;
         }
 
@@ -355,7 +327,7 @@ mod statements {
 
         println!("The wrong answer is {}", answer);
 
-        if todo!("If true, assign 42 to answer") {
+        if 1 == 1 {
             answer = 42;
         } else {
             answer = -42;
@@ -368,11 +340,7 @@ mod statements {
     fn expression_statement() {
         #[allow(unused_mut)]
         let mut buf = String::new();
-
-        println!("Press any key to continue...");
-
-        todo!("Read a line into &mut buf with std::io::stdin()");
-
+        //std::io::stdin().read_line(&mut buf).unwrap();
         assert_eq!((), ());
     }
 }
@@ -386,9 +354,12 @@ mod items {
     #[test]
     fn function_item() {
         // Declare a function named `answer` that returns 42.
+        fn answer() -> i32 {
+            42
+        }
 
         // Call the function:
-        let value: i32 = todo!("answer()");
+        let value: i32 = answer();
 
         assert_eq!(value, 42);
     }
@@ -397,12 +368,18 @@ mod items {
     fn struct_item() {
         // Declare a struct item named `Person` that has name and age.
         // The type of name is `&'static str` and the type of age is `i32`.
-        struct Person {}
+        struct Person {
+            name: &'static str,
+            age: i32,
+        }
 
-        let person: Person = todo!("Person {{ name: \"Alice\", age: 42 }}");
+        let person: Person = Person {
+            name: "Alice",
+            age: 42,
+        };
 
-        assert_eq!(todo!("person.name") as &str, "Alice");
-        assert_eq!(todo!("person.age") as i32, 42);
+        assert_eq!(person.name, "Alice");
+        assert_eq!(person.age, 42);
     }
 
     #[test]
@@ -410,22 +387,29 @@ mod items {
         // Declare an enum item named `Direction` that has four variants:
         // `North`, `South`, `East`, and `West`.
         #[derive(PartialEq, Eq, Debug)]
-        enum Direction {}
+        enum Direction {
+            North,
+            South,
+            East,
+            West,
+        }
 
-        let direction: Direction = todo!("Direction::North");
+        let direction: Direction = Direction::North;
 
-        assert_eq!(direction, todo!("Direction::North") as Direction);
+        assert_eq!(direction, Direction::North);
     }
 
     #[test]
     fn trait_item() {
         // Declare a trait item named `Answer` that has a single function named `answer`
         // that returns an `i32`.
-        trait Answer {}
+        trait Answer {
+            fn answer(&self) -> i32;
+        }
 
         struct Question {}
 
-        impl Question {
+        impl Answer for Question {
             // impl Answer for Question
             fn answer(&self) -> i32 {
                 42
@@ -441,42 +425,43 @@ mod items {
     fn module_item() {
         // Declare a module item named `math` that has a function named `add` that adds
         // two `i32` values together.
-        mod math {}
+        mod math {
+            pub fn add(x: i32, y: i32) -> i32 {
+                x + y
+            }
+        }
 
-        let answer: i32 = todo!("math::add(40, 2)");
-
+        let answer: i32 = math::add(40, 2);
         assert_eq!(answer, 42);
     }
 
     #[test]
     fn type_alias_item() {
         // Declare a type alias named `Answer` that is an `i32`.
-        type Answer = ();
-
-        let answer: Answer = todo!("42");
-
-        assert_eq!(answer, todo!("42"));
+        type Answer = i32;
+        let answer: Answer = 42;
+        assert_eq!(answer, 42);
     }
 
     #[test]
     fn union_item() {
         // Declare a union named `Number` that has two fields: `int: i32` and `float: f64`.
         union Number {
+            int: i32,
             float: f32,
         }
 
-        let answer: Number = todo!("Number {{ int: 42 }}");
+        let answer: Number = Number { int: 42 };
 
         assert_eq!(unsafe { answer.float }, 5.9e-44);
     }
 
     #[test]
     fn use_item() {
-        // Declare a use item that brings the `std::collections::HashMap` type into scope
-        // as `Map`.
-
-        // let mut map: Map<i32, &str> = Map::new();
-        // map.insert(42, "the answer");
-        // assert_eq!(map.get(&42), Some(&"the answer"));
+        use std::collections::HashMap as Map;
+        let mut map: Map<i32, &str> = Map::new();
+        let value = "Hello Andreas!";
+        map.insert(42, &value);
+        assert_eq!(map.get(&42), Some(&value));
     }
 }
