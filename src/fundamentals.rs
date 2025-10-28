@@ -18,20 +18,22 @@
 mod variables {
     #[test]
     fn immutable_variable() {
-        todo!("Create a variable called `answer` that is immutable and set it equal to 42 with type i32");
-
-        assert_eq!(todo!("answer") as u32, 42);
+        // todo!("Create a variable called `answer` that is immutable and set it equal to 42 with type i32");
+        let answer : i32 = 42;
+        assert_eq!(answer, 42);
     }
 
     #[test]
     fn mutable_variable() {
-        todo!(
-            "Create a variable called `answer` that is mutable and set it equal to 0 with type i32"
-        );
 
-        todo!("Assign 42 to `answer`");
+        // todo!(
+        //     "Create a variable called `answer` that is mutable and set it equal to 0 with type i32"
+        // );
+        let mut answer: i32 = 0;
+        assert_eq!(answer, 0);
 
-        assert_eq!(todo!("answer") as u32, 42);
+        answer = 42;
+        assert_eq!(answer, 42);
     }
 }
 
@@ -44,91 +46,94 @@ mod variables {
 mod literals {
     #[test]
     fn signed_integer_literal_32() {
-        let answer: i32 = todo!("The answer to the meaning of life, the universe, and everything");
+        //let answer: i32 = todo!("The answer to the meaning of life, the universe, and everything");
+        let answer: i32 = 42;
 
         assert_eq!(answer, 42);
     }
 
     #[test]
     fn unsigned_integer_literal_32() {
-        let answer: u32 = todo!("The answer to the meaning of life, the universe, and everything");
+        //let answer: u32 = todo!("The answer to the meaning of life, the universe, and everything");
+        let answer: u32 = 42;
 
         assert_eq!(answer, 42u32);
     }
 
     #[test]
     fn signed_integer_literal_64() {
-        let answer: i64 = todo!("A bigger number than can fit into an i32");
+        //let answer: i64 = todo!("A bigger number than can fit into an i32");
+        let answer: i64 = 2_147_483_648i64;
 
         assert_eq!(answer, 2_147_483_648i64);
     }
 
     #[test]
     fn unsigned_integer_literal_64() {
-        let answer: u64 = todo!("A bigger number than can fit into an i32");
-
+        // let answer: u64 = todo!("A bigger number than can fit into an i32");
+        let answer: u64 = 2_147_483_648u64;
         assert_eq!(answer, 2_147_483_648u64);
     }
 
     #[test]
     fn float_literal() {
-        let answer: f64 = todo!("A number with a fractional component");
-
+        //let answer: f64 = todo!("A number with a fractional component");
+        let answer: f64 = 3.14159265358979323846264338327950288f64;
         assert_eq!(answer, 3.14159265358979323846264338327950288f64);
     }
 
     #[test]
     fn boolean_literal() {
-        let answer: bool = todo!("Is coffee better than tea?");
-
+        //let answer: bool = todo!("Is coffee better than tea?");
+        let answer: bool = true;
         assert_eq!(answer, true);
     }
 
     #[test]
     fn character_literal() {
-        let answer: char = todo!("A single character");
-
+        //let answer: char = todo!("A single character");
+        let answer: char = '🦀';
         assert_eq!(answer, '🦀');
     }
 
     #[test]
     fn string_literal() {
-        let answer: &str = todo!("A string slice");
-
+        // let answer: &str = todo!("A string slice");
+        let answer: &str = "Hello, world!";
         assert_eq!(answer, "Hello, world!");
     }
 
     #[test]
     fn byte_string_literal() {
-        let answer: &[u8] = todo!("A byte string slice");
-
-        assert_eq!(answer, b"Hello, world!");
+        //let answer: &[u8] = todo!("A byte string slice");
+        let answer: &[u8] = b"Hello, Andreas!";
+        assert_eq!(answer, b"Hello, Andreas!");
     }
 
     fn byte_literal() {
-        let answer: u8 = todo!("A single byte");
-
+        // let answer: u8 = todo!("A single byte");
+        let answer: u8 = b'H';
         assert_eq!(answer, b'H');
     }
 
     #[test]
     fn array_literal() {
-        let answer: [i32; 3] = todo!("An array of integers");
-
+        //let answer: [i32; 3] = todo!("An array of integers");
+        let answer: [i32; 3] = [1, 2, 3];
         assert_eq!(answer, [1, 2, 3]);
     }
 
     #[test]
     fn tuple_literal() {
-        let answer: (i32, f64, &str) = todo!("A tuple of integers, floats, and strings");
-
+        //let answer: (i32, f64, &str) = todo!("A tuple of integers, floats, and strings");
+        let answer: (i32, f64, &str) = (1, 2.0, "three");
         assert_eq!(answer, (1, 2.0, "three"));
     }
 
     #[test]
     fn unit_literal() {
-        let answer: () = todo!("A unit value");
-
+        // let answer: () = todo!("A unit value");
+        let answer: () = ();
         assert_eq!(answer, ());
     }
 }
@@ -144,29 +149,31 @@ mod expressions {
 
     #[test]
     fn numeric_operator_expression() {
-        let answer: i32 = todo!("2 + 2");
+        //let answer: i32 = todo!("2 + 2");
+        let answer = 2 + 2;
 
         assert_eq!(answer, 4);
     }
 
     #[test]
     fn boolean_operator_expression() {
-        let answer: bool = todo!("It's not true!");
-
+        // let answer: bool = todo!("It's not true!");
+        let answer = !true;
         assert_eq!(answer, false);
     }
 
     #[test]
     fn boolean_bit_operator_expression() {
-        let answer: bool = todo!("It's not true!");
+        // let answer: bool = todo!("It's not true!");
+        let answer = !true && true;
 
         assert_eq!(answer, false);
     }
 
     #[test]
     fn if_else_expression() {
-        let answer: i32 = todo!("If true, 1, otherwise 0");
-
+        // let answer: i32 = todo!("If true, 1, otherwise 0");
+        let answer = if true { 1 } else { 0 };
         assert_eq!(answer, 1);
     }
 
@@ -174,7 +181,10 @@ mod expressions {
     fn match_expression() {
         let result: Result<i32, String> = Result::Ok(42);
 
-        let answer: i32 = todo!("Match on result");
+        let answer: i32 = match{result}{
+            Result::Ok(value) => value,
+            Result::Err(_) => 0
+        };
 
         assert_eq!(answer, 42);
     }
@@ -191,7 +201,7 @@ mod expressions {
             age: 42,
         };
 
-        let answer: &str = todo!("Get the name of the person");
+        let answer: &str = person.name;
 
         assert_eq!(answer, "Alice");
     }
@@ -200,7 +210,7 @@ mod expressions {
     fn tuple_expression() {
         let tuple = (1, 2.0, "three");
 
-        let answer: &str = todo!("Project out 3rd element of tuple");
+        let answer: &str = tuple.2;
 
         assert_eq!(answer, "three");
     }
@@ -209,7 +219,7 @@ mod expressions {
     fn block_expression() {
         let answer: i32 = {
             println!(".");
-            todo!("Magic number")
+            42
         };
 
         assert_eq!(answer, 42);
@@ -221,14 +231,14 @@ mod expressions {
             x + 1
         }
 
-        let answer: i32 = todo!("Add one to 41");
+        let answer: i32 = add_one(41);
 
         assert_eq!(answer, 42);
     }
 
     #[test]
     fn method_call_expression() {
-        let answer: String = todo!("Convert 42 to a string");
+        let answer: String = 42.to_string();
 
         assert_eq!(answer, "42");
     }
@@ -236,21 +246,22 @@ mod expressions {
     #[test]
     fn array_indexing_expression() {
         let array: [i32; 3] = [1, 2, 3];
-        let answer: i32 = todo!("Get the first element of the array");
+        let answer: i32 = array[0];
 
         assert_eq!(answer, 1);
     }
 
     #[test]
     fn closure_expression() {
-        let answer = |x: i32| x + (todo!("Add one to x") as i32);
+        let answer = |x: i32| x + 1;
 
         assert_eq!(answer(41), 42);
     }
 
     #[test]
     fn range_inclusive_expression() {
-        let mut range: RangeInclusive<i32> = todo!("Create a range from 1 to 3");
+        // let mut range: RangeInclusive<i32> = todo!("Create a range from 1 to 3");
+        let mut range: std::ops::RangeInclusive<i32> = 1..=3;
 
         let found = range.find(|&x| x == 3);
 
@@ -259,7 +270,8 @@ mod expressions {
 
     #[test]
     fn range_exclusive_expression() {
-        let mut range: Range<i32> = todo!("Create a range from 1 to 3 (exclusive)");
+        //let mut range: Range<i32> = todo!("Create a range from 1 to 3 (exclusive)");
+        let mut range: std::ops::Range<i32> = 1..3;
 
         let found = range.find(|&x| x == 3);
 
@@ -270,8 +282,7 @@ mod expressions {
     fn loop_with_break_expression() {
         let answer: i32 = loop {
             println!("Looping...");
-
-            break todo!("Break with 42");
+            break 42;
         };
 
         assert_eq!(answer, 42);
@@ -285,7 +296,7 @@ mod expressions {
         let range = 1..=3;
 
         let answer: () = for x in range {
-            todo!("Add x to sum");
+            sum += x;
         };
 
         assert_eq!(sum, 6);
